@@ -1,0 +1,54 @@
+extends ../layout
+block append stylesheets
+    link(rel='stylesheet', href='/stylesheets/customer-search.css')
+
+block append scripts 
+    script(src='/javascripts/app/customer/search.js')
+
+block content
+    div(class='search-page-layout')
+        div(class='standard-form-container search-form')
+            +formheader("Customer Search")
+            div: form(method='POST' action='' id='frmSearch' class='search-page-form-fields')
+                    div Phone Number
+                    - var phoneNumber = (search == undefined || search.phone == undefined ? '' : search.phone);
+                    div: input(id='txtPhoneNumber' name='phone' type='text' class='search-input' value='' + phoneNumber + '') 
+                    div City
+                    - var city = (search == undefined || search.city == undefined ? '' : search.city);
+                    div: input(id='txtCity' name='city' type='text' class='search-input' value='' + city + '')
+                    div Last Name
+                    - var lastName = (search == undefined || search.lastName == undefined ? '' : search.lastName)
+                    div: input(id='txtLastName' name='lastName' type='text' class='search-input' value='' + lastName + '')
+                    div First Name
+                    - var firstName = (search == undefined || search.firstName == undefined ? '' : search.firstName)
+                    div: input(id='txtFirstName' name='firstName' type='text' class='search-input' value='' + firstName + '')
+                    input(type='hidden' id='txtCustomerId' name='customerId')
+            div(class='error hidden search-error' id='divSearchError'): span At least one search field required
+
+        -var displayResults = (results != undefined && results != null ? '' : 'none')
+        div(class='standard-form-container search-results' style='display:' + displayResults)
+            +formheader("Results")
+            table
+                thead 
+                    tr
+                        th 
+                        th Name
+                        th Address
+                        th City State ZIP
+                        th Phone
+                tbody
+                - if (results == undefined) results = []
+                - for result in results 
+                        tr
+                            td: input(onkeyup="custfunc(event, #{result.id})" length=1 type='text' class='search-input function-input')
+                            td(class='clickable' onclick="edit(#{result.id})")= result.firstName+' '+result.lastName
+                            td= result.address1 
+                            td= result.city+' '+result.state+' '+result.zip
+                            td= result.phone    
+        
+        div(class='search-functions')
+            span(class='clickable' onclick='search()') &lt;ENTER&gt; to Search 
+            span(class='clickable' onclick='menu()') F2=Return to Menu  
+            span(class='clickable' onclick='edit(0)') F5=New Customer
+
+                    

@@ -1,0 +1,66 @@
+extends ../layout
+block append stylesheets
+  link(rel='stylesheet', href='/stylesheets/customer/edit.css')
+
+block append scripts 
+    script(src='/javascripts/app/customer/edit.js')
+
+block content
+    div(class='edit-page-layout')
+        div(class='standard-form-container edit-form')
+            +formheader("Customer Edit")
+            div: form(method='POST' action='' id='frmEdit' class='edit-page-form-fields')
+                div
+                    div(class='edit-page-name-fields')
+                            div: label(for='txtFirstName') Name
+                            div
+                                - var firstName = (results == null ? '' : results.firstName);
+                                input(id='txtFirstName' name='first' type='text' placeholder='First' value='' + firstName + '')
+                                - var lastName = (results == null ? '' : results.lastName);
+                                input(id='txtLastName' name='last' type='text' placeholder='Last' value='' + lastName + '')
+                            div: label(for='txtAddress') Address
+                            - var address = (results == null ? '' : results.address1);
+                            div: input(id='txtAddress' name='address' type='text' placeholder='Street or PO Box' value='' + address + '')
+                            div: label(for='txtCity') City/State/ZIP
+                            div(class='edit-page-city-fields')
+                                - var city = (results == null ? '' : results.city)
+                                - var state = (results == null ? '' : results.state)
+                                - var zip = (results == null ? '' : results.zip)
+                                div: input(id='txtCity' name='phone' type='text' placeholder='City' value='' + city + '') 
+                                div: input(id='txtState' name='email' type='text' maxlength=2 placeholder='State' value='' + state + '')
+                                div: input(id='txtZip' name='email' type='text' maxlength=9 placeholder='ZIP' value='' + zip + '')
+
+                div
+                    div(class='edit-page-phone-fields')
+                        div: label(for='txtPhoneNumber') Phone
+                        - var phone = (results == null ? '' : results.phone)
+                        div: input(id='txtPhoneNumber' name='phone' type='text' value='' + phone + '')
+                        div: label(for='txtEmailAddress') Email
+                        - var email = (results == null ? '' : (results.email == undefined ? '' : result.email))
+                        div: input(id='txtEmailAddress' name='email' type='text' value='' + email + '')
+        div(class='standard-form-container vehicle-list')
+            +formheader("Vehicles")
+            table
+                thead 
+                    tr
+                        th 
+                        th Year
+                        th Make
+                        th Model
+                        th Trim
+                        th Color 
+                        th VIN
+                tbody
+                - if (results == undefined || results.vehicles == undefined) vehicles = []; else vehicles = results.vehicles;
+                - for vehicle in vehicles 
+                        tr
+                            td: input(onkeyup="" length=1 type='text' class='function-input')
+                            td(class='clickable' onclick="edit(#{vehicle.id})")= vehicle.year.toString()
+                            td= vehicle.make
+                            td= vehicle.model
+                            td= vehicle.trim
+                            td= vehicle.color
+                            td= vehicle.vin    
+        
+
+                    

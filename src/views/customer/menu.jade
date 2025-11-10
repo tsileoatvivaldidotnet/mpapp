@@ -1,0 +1,17 @@
+extends ../layout
+block append stylesheets
+    link(rel='stylesheet', href='/stylesheets/main-menu.css')
+
+block append scripts 
+    script(src='/javascripts/app/customer/menu.js')
+block content
+    div(class='center-page-outer')
+        div Welcome to Moustache Pete
+        ol
+            li(onclick='menuSelect(1)' class='clickable') Customer Search
+            li(onclick='menuSelect(2)') Scheduling
+        div 
+            span Select a function and hit &lt;enter&gt; 
+            input(class='function' id='txtFunction' type='text' maxlength=1)
+        div(id='divFunctionError' class='error' style='display:none') Invalid selection
+            

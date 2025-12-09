@@ -1,3 +1,4 @@
+let mode = '';
 function init() {
     document.getElementById('txtPhoneNumber').focus();
     document.getElementById('frmSearch').addEventListener('keyup', 
@@ -8,6 +9,24 @@ function init() {
                 else if (e.code == "F2") menu();
             }
     );
+    
+    document.addEventListener('keyup', (e) => {
+        if (mode == 'Delete') {
+            if (e.code == 'KeyY') alert('Delete');
+            else if (e.code == 'KeyN') closeDeleteModal();
+        }
+    });
+    document.getElementById('divX').addEventListener('click', (e) => {
+        closeDeleteModal(e);   
+    });
+    document.getElementById('btnDeleteYes').addEventListener('click', (e) => {});
+    document.getElementById('btnDeleteNo').addEventListener('click', closeDeleteModal);
+}
+
+function closeDeleteModal(e) {
+    document.getElementById('modalForm').style.display='none';
+    enableDisable('searchForm', true);
+    mode = '';
 }
 
 function search() {
@@ -34,10 +53,23 @@ function edit(id) {
 
 function custfunc(e, id) {
     if (e.code == "Enter") {
-        if (e.srcElement.value.toLowerCase() == 'e') edit(id);
+        const func = e.srcElement.value;
+        if (func == 'E') edit(id);
+        else if (func == 'D') {
+            mode = 'Delete';
+            document.getElementById('modalForm').style.display = 'flex';
+            enableDisable('searchForm', false);
+            document.getElementById('btnDeleteYes').focus();
+            e.stopPropagation();
+        }
+    }
+    else {
+        e.srcElement.value = e.srcElement.value.toUpperCase();
     }
 }
 
 let menu = () => location.href="../customer/menu";
 
+//
 document.addEventListener("DOMContentLoaded", init);
+

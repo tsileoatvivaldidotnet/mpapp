@@ -1,9 +1,12 @@
 .search-page-layout {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
     align-items: center; 
-    justify-content: top; 
+    justify-content: top;
+    top: 0px;
+    position: absolute; 
 }
 
 .search-form {

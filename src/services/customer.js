@@ -62,4 +62,24 @@ async function updateCustomer(oCust) {
     }
 }
 
-module.exports = {getCustomerById, getAllCustomers, createCustomer, searchCustomers, updateCustomer}
+async function deleteCustomer(oCust) {
+    try {
+        const id = oCust.id;
+        if (!id) return false;
+        const oExistingCust = Customer.findOne({id: id});
+        if (oExistingCust == null) {
+            return false;
+        }
+        else {
+            delete oCust.id;
+            oCust.deleted = true;
+            await oExistingCust.updateOne({id: id}, oCust);
+            return true;
+        }
+    }
+    catch(e) {
+        throw(e);
+    }
+}
+
+module.exports = {getCustomerById, getAllCustomers, createCustomer, searchCustomers, updateCustomer, deleteCustomer}

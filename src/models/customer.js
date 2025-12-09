@@ -46,7 +46,11 @@ const CustomerSchema = new Schema(
             color: String,
             vin: String
         }],
-        optInText: Boolean
+        optInText: Boolean,
+        deleted: {
+            type: Boolean,
+            required: false
+        }
     },
     { optimisticConcurrency: true}
 );

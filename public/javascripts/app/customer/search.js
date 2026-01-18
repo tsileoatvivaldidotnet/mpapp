@@ -5,8 +5,6 @@ function init() {
         (e) => 
             { 
                 if (e.code == "Enter") search();
-                else if (e.code == "F5") edit(0);
-                else if (e.code == "F2") menu();
             }
     );
     
@@ -14,6 +12,11 @@ function init() {
         if (mode == 'Delete') {
             if (e.code == 'KeyY') alert('Delete');
             else if (e.code == 'KeyN') closeDeleteModal();
+        }
+        else {
+            if (e.code == "F2") menu();
+            else if (e.code == "F5") edit(0);
+
         }
     });
     document.getElementById('divX').addEventListener('click', (e) => {

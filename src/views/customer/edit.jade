@@ -2,9 +2,6 @@ extends ../layout
 block append stylesheets
   link(rel='stylesheet', href='/stylesheets/customer/edit.css')
 
-block append scripts 
-    script(src='/javascripts/app/customer/edit.js')
-
 block content
     div(class='edit-page-layout')
         div(class='standard-form-container edit-form')
@@ -50,6 +47,7 @@ block content
                         th Trim
                         th Color 
                         th VIN
+                        th Cbx
                 tbody
                 - if (results == undefined || results.vehicles == undefined) vehicles = []; else vehicles = results.vehicles;
                 - for vehicle in vehicles 
@@ -60,7 +58,16 @@ block content
                             td= vehicle.model
                             td= vehicle.trim
                             td= vehicle.color
-                            td= vehicle.vin    
+                            td= vehicle.vin
+                            td
+                                div(id='jqxcombobox')    
+        div(class='edit-functions')
+            span E=Edit
+            span D=Delete
+            span F3=Add new vehicle
+block append scripts 
+    script(src='/javascripts/app/customer/edit.js')
+
         
 
                     

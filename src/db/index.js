@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 let mongoUrl;
 const connect = async() => {
     try {
-      const conn = await mongoose.connect(process.env.MONGODB_URL);
+        const user = process.env.MONGODB_USERNAME;
+        const pass = process.env.MONGODB_PASSWORD;
+        const conn = await mongoose.connect(process.env.MONGODB_URL, {user: user, pass: pass});
         console.log(`MongoDB Connected: ${conn.connection.host}`);
     } catch (err) { 
         console.error(`Error: ${err.message}`)

@@ -4,7 +4,9 @@ const Joi = require('joi');
 const envVarsSchema = Joi.object()
     .keys({
         PORT: Joi.number().default(3000),
-        MONGODB_URL: Joi.string().required().description('Mongo DB url')
+        MONGODB_URL: Joi.string().required().description('Mongo DB url'),
+        MONGODB_USERNAME: Joi.string().required().description('Monogo DB username'),
+        MONGODB_PASSWORD: Joi.string().required().description('Mongo DB password')
     }).unknown();
 
 function createConfig(configPath) {
@@ -22,6 +24,8 @@ function createConfig(configPath) {
         port: envVars.PORT,
         mongo: {
             url: envVars.MONGODB_URL,
+            username: envVars.MONGODB_USERNAME,
+            password: envVars.MONGODB_PASSWORD
         }
     }
 }

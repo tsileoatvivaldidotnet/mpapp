@@ -1,5 +1,5 @@
 let txtFunction = null;
-let funcs = ['search', 'schedule'];
+let funcs = ['/customer/search', '/schedule'];
 
 function init() {
     txtFunction = document.getElementById('txtFunction');
@@ -8,7 +8,7 @@ function init() {
 }
 
 function menuSelect(func) {
-    location.href = location.href.replace('menu', funcs[func-1]);
+    location.href = location.href.replace('/menu', funcs[func-1]);
 }
 
 function menuKeyUp(e) {

@@ -49,7 +49,7 @@ function search() {
 
 function edit(id) {
     let frm = document.getElementById('frmSearch');
-    frm.action = '/app/customer/edit';
+    frm.action = '../customer/edit';
     document.getElementById('txtCustomerId').value = id;
     frm.submit();
 }
@@ -71,7 +71,7 @@ function custfunc(e, id) {
     }
 }
 
-let menu = () => location.href="../customer/menu";
+let menu = () => location.href="../menu";
 
 //
 document.addEventListener("DOMContentLoaded", init);

@@ -37,6 +37,8 @@ block content
                         div: input(id='txtFirstName' name='firstName' type='text' class='search-input' value='' + firstName + '')
                         input(type='hidden' id='txtCustomerId' name='customerId')
                 div(class='error hidden search-error' id='divSearchError'): span At least one search field required
+                div(class='hidden'): form(method='GET' id='frmEdit')
+                    
 
             div(class='search-functions')
                 span(class='clickable' onclick='search()') &lt;ENTER&gt; to Search 

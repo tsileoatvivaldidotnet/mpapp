@@ -48,9 +48,8 @@ function search() {
 }
 
 function edit(id) {
-    let frm = document.getElementById('frmSearch');
-    frm.action = '../customer/edit';
-    document.getElementById('txtCustomerId').value = id;
+    let frm = document.querySelector('#frmEdit');
+    frm.action = `/customer/edit/${id}`;
     frm.submit();
 }
 

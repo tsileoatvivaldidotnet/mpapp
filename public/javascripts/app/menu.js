@@ -1,5 +1,5 @@
 let txtFunction = null;
-let funcs = ['/customer/search', '/schedule'];
+let funcs = ['/customer/search', '/schedule', '', '', '', '', '', '', '/admin'];
 
 function init() {
     txtFunction = document.getElementById('txtFunction');
@@ -15,7 +15,7 @@ function menuKeyUp(e) {
     if (e.code == 'Enter') {
         const elt = document.getElementById('divFunctionError');
         const val = parseInt(txtFunction.value);
-        if (val == NaN || (val != 1 && val != 2)) {
+        if (val == NaN || (val != 1 && val != 2 && val != 9)) {
             showHideElement(elt,true);
         }
         else {

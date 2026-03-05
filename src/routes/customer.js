@@ -16,13 +16,13 @@ router.post('/search', async function(req, res, next) {
   res.render('customer/search', { title: 'results', search: req.body, results: searchResults.data });
 });
 
-router.post('/edit', async function(req, res, next){
-  let customerId = req.body.customerId;
+router.get('/edit/:id', async function(req, res, next){
+  let customerId = req.params.id;
   let customer = null;
   if (customerId != 0) {
-      customer = await customerService.getCustomerById(customerId);
+      customer = await axios.get(`${API_GATEWAY_URL}/customer/${customerId}`);
   }
-  res.render('customer/edit', { customerId: customerId, results: customer });
+  res.render('customer/edit', { customerId: customerId, results: customer.data });
 });
 
 module.exports = router;  

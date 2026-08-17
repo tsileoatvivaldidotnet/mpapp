@@ -8,15 +8,18 @@ function init() {
             }
     );
     
-    document.addEventListener('keyup', (e) => {
+    document.addEventListener('keydown', (e) => {
         if (mode == 'Delete') {
             if (e.code == 'KeyY') alert('Delete');
             else if (e.code == 'KeyN') closeDeleteModal();
         }
-        else {
-            if (e.code == "F2") menu();
-            else if (e.code == "F5") edit(0);
-
+        else if (e.code == "F2") {
+            e.preventDefault();
+            menu();
+        }
+        else if (e.code == "F5") {
+            e.preventDefault();
+            edit(0);
         }
     });
     document.getElementById('divX').addEventListener('click', (e) => {

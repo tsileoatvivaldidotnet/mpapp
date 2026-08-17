@@ -3,7 +3,7 @@ block append stylesheets
     link(rel='stylesheet', href='/stylesheets/main-menu.css')
 
 block append scripts 
-    script(src='/javascripts/app/menu.js')
+    script(src='/javascripts/app/menu.js', defer)
 block content
     div(class='center-page-outer')
         div Welcome to Moustache Pete
@@ -12,8 +12,8 @@ block content
             li(onclick='menuSelect(2)') Scheduling
             li
             li(onclick='menuSelect(9)') Admin Menu
-        div 
+        div(class='menu-keyboard-hint')
             span Select a function and hit &lt;enter&gt; 
             input(class='function' id='txtFunction' type='text' maxlength=1)
-        div(id='divFunctionError' class='error' style='display:none') Invalid selection
+            div(id='divFunctionError' class='error' style='display:none') Invalid selection
             

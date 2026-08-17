@@ -3,20 +3,20 @@ block append stylesheets
     link(rel='stylesheet', href='/stylesheets/customer/search.css')
 
 block append scripts 
-    script(src='/javascripts/app/customer/search.js')
+    script(src='/javascripts/app/customer/search.js', defer)
 
 block content
     div(id='mainDiv')
         div(id='modalForm' class='modal')
-            div(id='divX' class='upper-right x-to-close') X
             div(class='modal-contents')
+                button(type='button' id='divX' class='upper-right x-to-close' aria-label='Close') X
                 h2 Delete Customer
-                div Are you sure you want to delete this customer 
+                div Are you sure you want to delete this customer?
                 div(class='button-row')
-                    button(id='btnDeleteYes')
+                    button(type='button' id='btnDeleteYes')
                         span(style='text-decoration: underline') Y
                         span es 
-                    button(id='btnDeleteNo')
+                    button(type='button' id='btnDeleteNo')
                         span(style='text-decoration: underline') N
                         span o
         div(id='searchForm' class='search-page-layout')
@@ -41,9 +41,15 @@ block content
                     
 
             div(class='search-functions')
-                span(class='clickable' onclick='search()') &lt;ENTER&gt; to Search 
-                span(class='clickable' onclick='menu()') F2=Return to Menu  
-                span(class='clickable' onclick='edit(0)') F5=New Customer
+                span(class='clickable' onclick='search()')
+                    span(class='theme-classic-only') &lt;ENTER&gt; to 
+                    | Search
+                span(class='clickable' onclick='menu()')
+                    span(class='theme-classic-only') F2=
+                    | Return to Menu
+                span(class='clickable' onclick='edit(0)')
+                    span(class='theme-classic-only') F5=
+                    | New Customer
 
             -var displayResults = (results != undefined && results != null ? '' : 'none')
             div(class='standard-form-container search-results' style='display:' + displayResults)
@@ -58,10 +64,9 @@ block content
                             th Phone
                     tbody
                     - if (results == undefined) results = []
-                    - console.log(results)
                     - for result in results 
                             tr
-                                td: input(onkeyup="custfunc(event, #{result.id})" length=1 type='text' class='function-input')
+                                td: input(onkeyup="custfunc(event, #{result.id})" maxlength=1 type='text' class='function-input')
                                 td(class='clickable' onclick="edit(#{result.id})")= result.firstName+' '+result.lastName
                                 td= result.address1 
                                 td= result.city+' '+result.state+' '+result.zip

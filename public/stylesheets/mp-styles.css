@@ -133,3 +133,40 @@ button:hover {
     display: flex;
     justify-content: space-around;
 }
+
+.theme-switcher {
+    position: fixed;
+    top: 8px;
+    right: 8px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12px;
+    color: green;
+}
+
+.theme-switcher-options {
+    display: flex;
+    border: 1px solid green;
+}
+
+.theme-switcher button {
+    border: none;
+    border-radius: 0;
+    padding: 4px 8px;
+    background: transparent;
+    color: green;
+    font-family: inherit;
+    font-size: 12px;
+}
+
+.theme-switcher button:hover {
+    background-color: #145214;
+}
+
+.theme-switcher button[aria-pressed="true"] {
+    background: green;
+    color: #202020;
+}

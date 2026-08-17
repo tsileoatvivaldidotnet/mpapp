@@ -1,13 +1,15 @@
+const path = require('path');
 const dotenv = require('dotenv');
 const Joi = require('joi');
 
 const envVarsSchema = Joi.object()
     .keys({
-        PORT: Joi.number().default(3000)
+        PORT: Joi.number().default(3000),
+        API_GATEWAY_URL: Joi.string().uri().required()
     }).unknown();
 
 function createConfig(configPath) {
-    const theenv = dotenv.config({path: configPath});
+    dotenv.config({path: configPath});
 
     const { value: envVars, error} = envVarsSchema
         .prefs({errors: {label: 'key'}})
@@ -18,8 +20,11 @@ function createConfig(configPath) {
     }
 
     return {
-        port: envVars.PORT
+        port: envVars.PORT,
+        apiGatewayUrl: envVars.API_GATEWAY_URL
     }
 }
 
-module.exports = { createConfig, };
+const config = createConfig(path.join(__dirname, '../../.env'));
+
+module.exports = { createConfig, ...config };

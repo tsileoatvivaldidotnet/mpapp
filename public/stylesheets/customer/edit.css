@@ -91,7 +91,13 @@
     justify-items: left;
 }
 
-.edit-functions > span {
+.edit-functions > .edit-action {
     padding-right: 50px;
     min-width: 150px;
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+    text-align: left;
 }

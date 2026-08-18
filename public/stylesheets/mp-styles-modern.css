@@ -78,7 +78,8 @@ input[type='text'] {
     gap: 16px;
 }
 
-.center-page-outer > div:first-child {
+.center-page-outer > h1 {
+    margin: 0;
     font-size: 1.5rem;
     font-weight: 600;
     letter-spacing: -0.02em;
@@ -94,11 +95,7 @@ input[type='text'] {
     gap: 8px;
 }
 
-.center-page-outer li:empty {
-    display: none;
-}
-
-.center-page-outer li[onclick] {
+.center-page-outer .menu-item {
     background: var(--mp-surface);
     border: 1px solid var(--mp-border);
     border-radius: var(--mp-radius);
@@ -109,7 +106,7 @@ input[type='text'] {
     cursor: pointer;
 }
 
-.center-page-outer li[onclick]:hover {
+.center-page-outer .menu-item:hover {
     border-color: var(--mp-accent);
 }
 
@@ -182,8 +179,8 @@ input[type='text'] {
     box-sizing: border-box;
 }
 
-.search-functions > span,
-.edit-functions > span {
+.search-functions > .search-action,
+.edit-functions > .edit-action {
     padding: 8px 14px;
     min-width: unset;
     min-height: 40px;
@@ -197,9 +194,13 @@ input[type='text'] {
     box-shadow: var(--mp-shadow);
 }
 
-.search-functions > span.clickable:hover,
-.edit-functions > span.clickable:hover {
+.search-functions > .search-action:hover,
+.edit-functions > .edit-action:hover {
     border-color: var(--mp-accent);
+}
+
+.modal.is-open {
+    display: flex;
 }
 
 .search-results table,

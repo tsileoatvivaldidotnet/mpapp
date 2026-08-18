@@ -19,6 +19,12 @@ body {
     justify-content: center; /* main axis, default is ? */
 }
 
+.center-page-outer > h1 {
+    margin: 0;
+    font-size: inherit;
+    font-weight: normal;
+}
+
 
 .clickable:hover {
     cursor: pointer;
@@ -95,6 +101,10 @@ input:focus-visible {
     background-color: #00FF0020;
 }
 
+.modal.is-open {
+    display: flex;
+}
+
 .modal-contents {
     border: 1px solid green;
     padding: 10px;
@@ -132,6 +142,11 @@ button:hover {
     margin: 20px;
     display: flex;
     justify-content: space-around;
+}
+
+#btnDeleteYes::first-letter,
+#btnDeleteNo::first-letter {
+    text-decoration: underline;
 }
 
 .theme-switcher {

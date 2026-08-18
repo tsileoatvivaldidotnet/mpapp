@@ -4,16 +4,15 @@ block append stylesheets
 
 block append scripts 
     script(src='/javascripts/app/menu.js', defer)
+
 block content
-    div(class='center-page-outer')
-        div Welcome to Moustache Pete
-        ol
-            li(onclick='menuSelect(1)' class='clickable') Customer Search
-            li(onclick='menuSelect(2)') Scheduling
-            li
-            li(onclick='menuSelect(9)') Admin Menu
-        div(class='menu-keyboard-hint')
-            span Select a function and hit &lt;enter&gt; 
-            input(class='function' id='txtFunction' type='text' maxlength=1)
-            div(id='divFunctionError' class='error' style='display:none') Invalid selection
-            
+    div.center-page-outer
+        h1 Welcome to Moustache Pete
+        ol.menu-list
+            li.menu-item.clickable(data-menu-fn='1') Customer Search
+            li.menu-item.clickable(data-menu-fn='2') Scheduling
+            li.menu-item.clickable(data-menu-fn='9') Admin Menu
+        div.menu-keyboard-hint
+            span Select a function and hit &lt;enter&gt;
+            input#txtFunction.function(type='text' maxlength=1)
+            p#divFunctionError.error.hidden Invalid selection
